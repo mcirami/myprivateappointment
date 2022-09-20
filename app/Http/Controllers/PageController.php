@@ -19,8 +19,8 @@ class PageController extends Controller
             array_push($imageArray, $exploded[1]);
         }
 
-        //$ip = $request->ip();
-        $ip = '174.86.205.0';
+        $ip = $request->ip();
+        //$ip = '174.86.205.0';
         $userInfo = Location::get($ip);
         $city = str_replace("City of ", "", $userInfo->cityName);
         Session::put('userCity', $city);
