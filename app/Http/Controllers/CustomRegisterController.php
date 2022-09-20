@@ -14,9 +14,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use App\Http\Traits\ApiRequests;
+
 
 class CustomRegisterController extends Controller
 {
+    use ApiRequests;
+
     /**
      * Display the registration view.
      *
@@ -176,6 +180,7 @@ class CustomRegisterController extends Controller
             $chatUser = $referral ? "?add_chat_user=" . $referral : "";
         }
 
+        $this->postToApi($request->email, $ip);
 
         return redirect(RouteServiceProvider::HOME . $chatUser);
     }
