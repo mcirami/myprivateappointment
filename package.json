@@ -37,6 +37,7 @@
         "jquery": "^3.6.0",
         "prettier": "^2.3.2",
         "pusher-js": "^7.0.4",
+        "react-datetime-picker": "^4.0.1",
         "react-icons": "^4.3.1",
         "react-router-dom": "^6.3.0",
         "react-switch": "^6.0.0",

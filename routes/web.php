@@ -7,6 +7,7 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\PageContentController;
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +20,8 @@ use App\Http\Controllers\PageContentController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [PageController::class, 'index'])->name('home');
+Route::get('/step-two/', [PageController::class, 'showStepTwo'])->name('step-two');
 
 Route::get('register-two', [CustomRegisterController::class, 'showRegisterTwo']);
 Route::get('register-three', [CustomRegisterController::class, 'showRegisterThree']);

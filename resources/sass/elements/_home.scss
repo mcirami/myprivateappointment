@@ -1,4 +1,4 @@
-.home, .settings_page {
+.page_wrap, .settings_page {
 
     .top_section {
         background: url('/images/home-top-bg.jpg') no-repeat;
@@ -52,7 +52,7 @@
             h2 {
                 font-size: 48px;
                 padding: 0 6%;
-                margin-top: 12%;
+                margin: 20px 0;
 
                 @media screen and (max-width: 992px) {
                     font-size: 38px;
@@ -97,7 +97,34 @@
         }
     }
 
-    .my_row.overlap {
+    .images_wrap {
+        width: 100%;
+        display: grid;
+        display: -moz-grid;
+        display: -ms-grid;
+        grid-template-columns: repeat(4, minmax(100px, 1fr));
+        grid-gap: 1rem;
+        max-width: 1000px;
+        margin: 0 auto;
+
+        @media screen and (max-width: 768px) {
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        }
+    }
+
+    .title {
+        text-align: center;
+        margin-bottom: 20px;
+
+        h3 {
+            font-size: 24px;
+
+            span {
+                color: $darkRed;
+            }
+        }
+    }
+    /*.my_row.overlap {
         margin-top: -200px;
     }
 
@@ -188,7 +215,7 @@
                 }
             }
         }
-    }
+    }*/
 
     footer {
         padding: 50px 0;

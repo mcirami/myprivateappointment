@@ -6,6 +6,7 @@ use App\Models\ContentSetting;
 use App\Models\User;
 use App\Notifications\WelcomeNotification;
 use App\Providers\RouteServiceProvider;
+use Carbon\Carbon;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -162,9 +163,19 @@ class CustomRegisterController extends Controller
             'password' => $password,
         ]);
 
-        $user->notify(new WelcomeNotification($userdata));
+        //$user->notify(new WelcomeNotification($userdata));
+        if ($request->date_time && $request->city) {
 
-        $chatUser = $referral ? "?add_chat_user=" . $referral : "";
+            $dateTime = Carbon::createFromTimestamp($request->date_time)->setTimezone($request->timezone)->format("F-j_g:ia");
+
+            $city = $request->city;
+
+            $chatUser = "?add_chat_user=" . $referral . "&city=" . $city . "&dateTime=" . $dateTime;
+
+        } else {
+            $chatUser = $referral ? "?add_chat_user=" . $referral : "";
+        }
+
 
         return redirect(RouteServiceProvider::HOME . $chatUser);
     }

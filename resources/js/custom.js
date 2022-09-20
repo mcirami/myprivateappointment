@@ -11,7 +11,7 @@ const queue = new MessageQueue;
 
 const pathName = window.location.pathname;
 
-if (!pathName.includes('register') && !pathName.includes('settings')) {
+if (!pathName.includes('register') && !pathName.includes('settings') && !pathName.includes('step-two')) {
     let messenger,
         typingTimeout,
         typingNow = 0,
@@ -48,6 +48,10 @@ if (!pathName.includes('register') && !pathName.includes('settings')) {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     let addChatUser = urlParams.get('add_chat_user');
+    let dateTimeSplit = urlParams.get('dateTime').split('_');
+    let date = dateTimeSplit[0].replace("-", " ");
+    let time = dateTimeSplit[1];
+    let city = urlParams.get('city').replace("_", " ");
 
     /**
      *-------------------------------------------------------------
@@ -1315,21 +1319,29 @@ if (!pathName.includes('register') && !pathName.includes('settings')) {
                 }
 
                 if (addChatUser) {
-
+                    console.log("WTF");
                     if ($.trim(addChatUser).length > 0) {
                         $(".messenger-search").trigger("focus");
                         try {
                             messengerSearch(addChatUser);
                         } finally {
                             setTimeout(function() {
-                                messageInput.val("Hey " + addChatUser +
-                                    "! I just joined and I'm ready to chat.");
-                                sendMessage();
-                                addChatUser = null;
+
+                                if (city && date && time) {
+                                    messageInput.val("Congrats you booked " + addChatUser +
+                                        " in " + city + " at " + time + " on " + date );
+                                    sendMessage();
+                                    addChatUser = null;
+                                } else {
+                                    messageInput.val("Hey " + addChatUser +
+                                        "! I just joined and I'm ready to chat.");
+                                    sendMessage();
+                                    addChatUser = null;
+                                }
+
                             }, 1500)
                         }
                     }
-
                 }
             });
         });
