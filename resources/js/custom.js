@@ -47,11 +47,12 @@ if (!pathName.includes('register') && !pathName.includes('settings') && !pathNam
 
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    let addChatUser = urlParams.get('add_chat_user');
-    let dateTimeSplit = urlParams.get('dateTime').split('_');
-    let date = dateTimeSplit[0].replace("-", " ");
-    let time = dateTimeSplit[1];
-    let city = urlParams.get('city').replace("_", " ");
+    const addChatUser = urlParams.get('add_chat_user');
+
+    const dateTimeSplit = urlParams.get('dateTime')?.split('_');
+    const date = dateTimeSplit?.[0].replace("-", " ");
+    const time = dateTimeSplit?.[1];
+    const city = urlParams.get('city')?.replace("_", " ");
 
     /**
      *-------------------------------------------------------------
