@@ -167,7 +167,7 @@ class CustomRegisterController extends Controller
             'password' => $password,
         ]);
 
-        //$user->notify(new WelcomeNotification($userdata));
+        $user->notify(new WelcomeNotification($userdata));
         if ($request->date_time && $request->city) {
 
             $dateTime = Carbon::createFromTimestamp($request->date_time)->setTimezone($request->timezone)->format("F-j_g:ia");
