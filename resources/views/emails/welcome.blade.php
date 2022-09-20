@@ -1,5 +1,5 @@
 @component('mail::message')
-# Welcome to Romeo Chat!
+# Welcome to {{config('app.name')}}!
 
 Below you will find your login credentials:
 
@@ -12,5 +12,5 @@ Password: <span>{{ $data['password'] }}</span>
 @endcomponent
 
 Thanks,<br>
-Romeo Chat
+{{config('app.name')}}
 @endcomponent
