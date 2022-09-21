@@ -47,8 +47,8 @@ if (!pathName.includes('register') && !pathName.includes('settings') && !pathNam
 
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const addChatUser = urlParams.get('add_chat_user');
-
+    let addChatUser = urlParams.get('add_chat_user');
+    const modelName = urlParams.get('modelName');
     const dateTimeSplit = urlParams.get('dateTime')?.split('_');
     const date = dateTimeSplit?.[0].replace("-", " ");
     const time = dateTimeSplit?.[1];
@@ -1329,8 +1329,8 @@ if (!pathName.includes('register') && !pathName.includes('settings') && !pathNam
                             setTimeout(function() {
 
                                 if (city && date && time) {
-                                    messageInput.val("Congrats you booked " + addChatUser +
-                                        " in " + city + " at " + time + " on " + date );
+                                    messageInput.val("Please wait for an agent to confirm your " + date + " appointment at " + time +
+                                        " in " + city + " with " + modelName + " ...connecting now." );
                                     sendMessage();
                                     addChatUser = null;
                                 } else {

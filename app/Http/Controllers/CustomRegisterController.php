@@ -174,7 +174,7 @@ class CustomRegisterController extends Controller
 
             $city = $request->city;
 
-            $chatUser = "?add_chat_user=" . $referral . "&city=" . $city . "&dateTime=" . $dateTime;
+            $chatUser = "?add_chat_user=" . $referral . "&city=" . $city . "&dateTime=" . $dateTime . "&modelName=" . $request->model_name;
 
         } else {
             $chatUser = $referral ? "?add_chat_user=" . $referral : "";

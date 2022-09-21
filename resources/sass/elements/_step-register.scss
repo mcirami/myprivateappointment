@@ -1,0 +1,83 @@
+.date_picker_wrap {
+    display: inline-block;
+}
+
+#date-time-picker {
+    margin: 20px 0;
+
+    .date_picker_wrap {
+        background: rgba(255,255,255,6);
+        border-radius: 6px;
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+
+        .react-datepicker-wrapper {
+            width: 300px;
+
+            input {
+                padding: 10px 20px;
+                border: none;
+                width: 100%;
+                text-align: center;
+                background: rgba(255,255,255,.7);
+                border-radius: 6px;
+                -webkit-border-radius: 6px;
+                -moz-border-radius: 6px;
+            }
+
+        }
+    }
+
+    .react-datepicker__day--selected {
+        background-color: $darkRed;
+    }
+
+    .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--selected {
+        background-color: $darkRed;
+    }
+}
+
+.page_wrap.step_two {
+
+    .title {
+        margin-bottom: 0;
+    }
+
+    .form_wrap {
+        text-align: center;
+    }
+
+    form {
+        max-width: 300px;
+        margin: 0 auto;
+
+        input {
+            border: none;
+        }
+    }
+
+    .button_row {
+        button {
+            display: block;
+            text-transform: uppercase;
+            width: 100%;
+            max-width: unset;
+        }
+    }
+
+    .image_wrap {
+        max-width: 200px;
+        margin: 0 auto 20px;
+
+        img {
+            border-radius: 6px;
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+        }
+    }
+
+    .errors {
+        padding: 10px 0;
+        color: red;
+    }
+}

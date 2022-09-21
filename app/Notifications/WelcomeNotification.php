@@ -42,7 +42,7 @@ class WelcomeNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('Welcome to Romeo Chat!')
+            ->subject('Welcome to ' . env('APP_NAME') . '!')
             ->markdown('emails.welcome', ['data' => $this->userData]
             );
     }

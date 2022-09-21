@@ -1,13 +1,20 @@
 import React, {useEffect, useState} from 'react';
-import DateTimePicker from 'react-datetime-picker';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 import {BiCalendar} from 'react-icons/bi';
 
 const DateTimeComponent = () => {
 
     const [value, setValue] = useState(new Date());
 
-    const handleChange = (value) => {
+    const filterPassedTime = (time) => {
+        const currentDate = new Date();
+        const selectedDate = new Date(time);
 
+        return currentDate.getTime() < selectedDate.getTime();
+    };
+
+    const handleChange = (value) => {
         document.getElementById('date_time').value = Math.round(new Date(value) / 1000);
         setValue(value);
     }
@@ -18,14 +25,13 @@ const DateTimeComponent = () => {
 
     return (
         <div className="date_picker_wrap shadow-sm">
-            <DateTimePicker
+            <DatePicker
+                selected={value}
                 onChange={(value) => handleChange(value)}
-                value={value}
+                showTimeSelect
+                filterTime={filterPassedTime}
                 minDate={new Date()}
-                disableClock={true}
-                amPmAriaLabel="Select AM/PM"
-                calendarAriaLabel="Toggle Calendar"
-                calendarIcon=<BiCalendar />
+                dateFormat="MMMM d, yyyy h:mm aa"
             />
         </div>
     );

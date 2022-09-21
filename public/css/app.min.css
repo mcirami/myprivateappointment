@@ -12802,7 +12802,7 @@ img {
   background: url("/images/home-top-bg.jpg") no-repeat;
   background-size: 100% 100%;
   background-position: center 15%;
-  min-height: 800px;
+  padding-bottom: 100px;
 }
 @media all and (max-width: 992px) {
   .page_wrap .top_section, .settings_page .top_section {
@@ -12826,8 +12826,8 @@ img {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: space-between;
-  -webkit-justify-content: space-between;
+  justify-content: center;
+  -webkit-justify-content: center;
   align-items: center;
   -webkit-align-items: center;
 }
@@ -12855,13 +12855,8 @@ img {
 }
 @media all and (max-width: 768px) {
   .page_wrap .top_section .heading_section h2, .page_wrap .top_section .heading_section .h2, .settings_page .top_section .heading_section h2, .settings_page .top_section .heading_section .h2 {
-    font-size: 32px;
+    font-size: 1.5em;
     margin-top: 8%;
-  }
-}
-@media all and (max-width: 550px) {
-  .page_wrap .top_section .heading_section h2, .page_wrap .top_section .heading_section .h2, .settings_page .top_section .heading_section h2, .settings_page .top_section .heading_section .h2 {
-    font-size: 24px;
   }
 }
 .page_wrap .top_section .heading_section h2 span, .page_wrap .top_section .heading_section .h2 span, .settings_page .top_section .heading_section h2 span, .settings_page .top_section .heading_section .h2 span {
@@ -12911,12 +12906,17 @@ img {
 .page_wrap .title h3, .page_wrap .title .h3, .settings_page .title h3, .settings_page .title .h3 {
   font-size: 24px;
 }
+@media screen and (max-width: 768px) {
+  .page_wrap .title h3, .page_wrap .title .h3, .settings_page .title h3, .settings_page .title .h3 {
+    font-size: 1.2em;
+  }
+}
 .page_wrap .title h3 span, .page_wrap .title .h3 span, .settings_page .title h3 span, .settings_page .title .h3 span {
   color: #b0273c;
 }
 .page_wrap footer, .settings_page footer {
   padding: 50px 0;
-  margin-top: 120px;
+  margin-top: 0;
   border-top: 1px solid #9c9c9c;
 }
 .page_wrap footer p, .settings_page footer p {
@@ -13740,24 +13740,37 @@ img {
 #date-time-picker {
   margin: 20px 0;
 }
-#date-time-picker .react-datetime-picker__wrapper {
+#date-time-picker .date_picker_wrap {
+  background: white;
   border-radius: 6px;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
+}
+#date-time-picker .date_picker_wrap .react-datepicker-wrapper {
+  width: 300px;
+}
+#date-time-picker .date_picker_wrap .react-datepicker-wrapper input {
   padding: 10px 20px;
   border: none;
-  background: #fff;
+  width: 100%;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
 }
-#date-time-picker .react-calendar__tile--active {
-  background: #b0273c;
+#date-time-picker .react-datepicker__day--selected {
+  background-color: #b0273c;
 }
-#date-time-picker .react-datetime-picker__button svg {
-  width: 22px;
-  height: 22px;
+#date-time-picker .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--selected {
+  background-color: #b0273c;
 }
 
 .page_wrap.step_two .title {
   margin-bottom: 0;
+}
+.page_wrap.step_two .form_wrap {
+  text-align: center;
 }
 .page_wrap.step_two form {
   max-width: 300px;
@@ -13781,8 +13794,9 @@ img {
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
 }
-.page_wrap.step_two footer {
-  margin-top: 0;
+.page_wrap.step_two .errors {
+  padding: 10px 0;
+  color: red;
 }
 /*
 ! tailwindcss v3.0.18 | MIT License | https://tailwindcss.com

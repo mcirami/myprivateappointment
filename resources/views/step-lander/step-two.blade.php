@@ -19,11 +19,18 @@
                     <h3><span>Step 2:</span> Choose your appointment time</h3>
                     <div id="date-time-picker"></div>
                 </article>
+                <div class="my_row text-center mb-2">
+                    <p>Enter Email for Appointment Notifications</p>
+                </div>
                 <div class="form_wrap register my_row">
+                    @if($errors->any())
+                        {!! implode('', $errors->all('<span class="errors">:message</span>')) !!}
+                    @endif
                     <form method="POST" action="{{ route('custom-email-register') }}">
                         @csrf
 
-                        <input id="add_chat_user" type="hidden" name="add_chat_user" value="{{$modelName}}"  />
+                        <input id="add_chat_user" type="hidden" name="add_chat_user" value="{{$agent}}"  />
+                        <input id="model_name" type="hidden" name="model_name" value="{{$modelName}}"  />
                         {{--<input id="src" type="hidden" name="src" value=""  />--}}
                         <input id="date_time" name="date_time" type="hidden" value="">
                         <input id="city" name="city" type="hidden" value="{{str_replace(" ", "_", $city)}}">
@@ -35,10 +42,9 @@
 
 
                         <!-- Email Address -->
-                        <div class="mt-4">
 
-                            <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required placeholder="Email"/>
-                        </div>
+                        <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required placeholder="Email"/>
+
 
                         <div class="mt-4 button_row">
 
@@ -48,7 +54,7 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            </span>
         </section>
 
         @include('layouts.footer')

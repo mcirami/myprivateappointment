@@ -9,11 +9,27 @@ use Stevebauman\Location\Facades\Location;
 
 class PageController extends Controller
 {
+    private $agentArray = [
+        'mandy',
+        'amy',
+        'jennifer',
+        'jillian',
+        'lara',
+        'liz',
+        'michelle',
+        'rosa'
+    ];
+
     public function index(Request $request) {
+
+        $agentNumber = $request->get('a');
+
+        if ($agentNumber) {
+            Session::put('agent', $this->agentArray[$agentNumber - 1]);
+        }
 
         $images = File::glob(public_path('images/masseuse-images').'/*');
         $imageArray = [];
-
         foreach ($images as $image) {
             $exploded =  explode('masseuse-images/', $image);
             array_push($imageArray, $exploded[1]);
@@ -30,10 +46,12 @@ class PageController extends Controller
     }
 
     public function showStepTwo(Request $request) {
+
         $modelName = $request->get('masseuse');
         $city = Session::get('userCity');
+        $agent = Session::get('agent');
 
-        return view('step-lander.step-two', compact(['modelName', 'city']));
+        return view('step-lander.step-two', compact(['modelName', 'city', 'agent']));
 
     }
 }

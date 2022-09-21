@@ -4,7 +4,7 @@
         background: url('/images/home-top-bg.jpg') no-repeat;
         background-size: 100% 100%;
         background-position: center 15%;
-        min-height: 800px;
+        padding-bottom: 100px;
 
         @media all and (max-width: 992px) {
             min-height: 700px;
@@ -31,8 +31,8 @@
                 flex-direction: row;
                 -ms-flex-wrap: nowrap;
                 flex-wrap: nowrap;
-                justify-content: space-between;
-                -webkit-justify-content: space-between;
+                justify-content: center;
+                -webkit-justify-content: center;
                 align-items: center;
                 -webkit-align-items: center;
 
@@ -60,12 +60,8 @@
                 }
 
                 @media all and (max-width: 768px) {
-                    font-size: 32px;
+                    font-size: 1.5em;
                     margin-top: 8%;
-                }
-
-                @media all and (max-width: 550px) {
-                    font-size: 24px;
                 }
 
                 span {
@@ -118,6 +114,10 @@
 
         h3 {
             font-size: 24px;
+
+            @media screen and (max-width: 768px) {
+                font-size: 1.2em;
+            }
 
             span {
                 color: $darkRed;
@@ -219,7 +219,7 @@
 
     footer {
         padding: 50px 0;
-        margin-top: 120px;
+        margin-top: 0;
         border-top: 1px solid #9c9c9c;
 
         p {
