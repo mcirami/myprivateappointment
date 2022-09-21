@@ -34,9 +34,12 @@ class PageController extends Controller
             $exploded =  explode('masseuse-images/', $image);
             array_push($imageArray, $exploded[1]);
         }
+        if (app()->environment('local')) {
+            $ip = '174.86.205.0';
+        } else {
+            $ip = $request->ip();
+        }
 
-        $ip = $request->ip();
-        //$ip = '174.86.205.0';
         $userInfo = Location::get($ip);
         $city = str_replace("City of ", "", $userInfo->cityName);
         Session::put('userCity', $city);
