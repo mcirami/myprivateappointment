@@ -317,7 +317,6 @@ class MessagesController extends Controller
      */
     public function getContacts(Request $request)
     {
-        $perPage = $request->get('page');
         // get all users that received/sent message from/to [Auth user]
         $users = Message::join('users',  function ($join) {
             $join->on('ch_messages.from_id', '=', 'users.id')
@@ -331,7 +330,7 @@ class MessagesController extends Controller
         ->select('users.*',DB::raw('MAX(ch_messages.created_at) max_created_at'))
         ->orderBy('max_created_at', 'desc')
         ->groupBy('users.id')
-        ->paginate($perPage ?? $this->perPage);
+        ->paginate($request->per_page ?? $this->perPage);
 
         $usersList =$users->items();
 

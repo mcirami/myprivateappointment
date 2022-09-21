@@ -927,7 +927,7 @@ if (!pathName.includes('register') && !pathName.includes('settings') && !pathNam
                 page: contactsPage
             }
 
-            try {
+            /*try {
                 axios.get(url + "/getContacts", packets).
                     then((data) => {
                         setContactsLoading(false);
@@ -949,9 +949,9 @@ if (!pathName.includes('register') && !pathName.includes('settings') && !pathNam
             } catch (err) {
                 setContactsLoading(false);
                 console.error(error);
-            }
+            }*/
 
-            /*$.ajax({
+            $.ajax({
                 url: url + "/getContacts",
                 method: "GET",
                 data: {_token: access_token, page: contactsPage},
@@ -977,7 +977,7 @@ if (!pathName.includes('register') && !pathName.includes('settings') && !pathNam
                     setContactsLoading(false);
                     console.error(error);
                 },
-            });*/
+            });
         }
     }
 
