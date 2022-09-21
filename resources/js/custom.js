@@ -922,7 +922,36 @@ if (!pathName.includes('register') && !pathName.includes('settings') && !pathNam
     function getContacts() {
         if (!contactsLoading && !noMoreContacts) {
             setContactsLoading(true);
-            $.ajax({
+
+            const packets = {
+                page: contactsPage
+            }
+
+            try {
+                axios.get(url + "/getContacts", packets).
+                    then((data) => {
+                        setContactsLoading(false);
+                        if (contactsPage < 2) {
+                            $(".listOfContacts").html(data.contacts);
+                        } else {
+                            $(".listOfContacts").append(data.contacts);
+                        }
+                        updateSelectedContact();
+                        // update data-action required with [responsive design]
+                        cssMediaQueries();
+                        if (data.total > 0) {
+                            $('.listOfContacts').css('height', 'auto');
+                        }
+                        // Pagination lock & messages page
+                        noMoreContacts = contactsPage >= data?.last_page;
+                        if (!noMoreContacts) contactsPage += 1;
+                    })
+            } catch (err) {
+                setContactsLoading(false);
+                console.error(error);
+            }
+
+            /*$.ajax({
                 url: url + "/getContacts",
                 method: "GET",
                 data: {_token: access_token, page: contactsPage},
@@ -948,7 +977,7 @@ if (!pathName.includes('register') && !pathName.includes('settings') && !pathNam
                     setContactsLoading(false);
                     console.error(error);
                 },
-            });
+            });*/
         }
     }
 
@@ -1320,7 +1349,6 @@ if (!pathName.includes('register') && !pathName.includes('settings') && !pathNam
                 }
 
                 if (addChatUser) {
-                    console.log("WTF");
                     if ($.trim(addChatUser).length > 0) {
                         $(".messenger-search").trigger("focus");
                         try {
@@ -1329,8 +1357,8 @@ if (!pathName.includes('register') && !pathName.includes('settings') && !pathNam
                             setTimeout(function() {
 
                                 if (city && date && time) {
-                                    messageInput.val("Please wait for an agent to confirm your " + date + " appointment at " + time +
-                                        " in " + city + " with " + modelName + " ...connecting now." );
+                                    messageInput.val("Please wait for an agent to confirm your appointment on " + date + " at " + time +
+                                        " in " + city + " with " + modelName + ". ...connecting now" );
                                     sendMessage();
                                     addChatUser = null;
                                 } else {
