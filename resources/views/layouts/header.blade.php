@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Romeo.Chat') }}</title>
+    <title>{{ config('app.name') }}</title>
 
     <link rel="icon" href="{{ asset('images/favicon.ico') }}">
     <!-- Fonts -->
