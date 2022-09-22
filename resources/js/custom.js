@@ -922,41 +922,41 @@ if (!pathName.includes('register') && !pathName.includes('settings') && !pathNam
     function getContacts() {
         if (!contactsLoading && !noMoreContacts) {
             setContactsLoading(true);
-
             const packets = {
                 page: contactsPage
             }
 
-            /*try {
+            try {
                 axios.get(url + "/getContacts", packets).
-                    then((data) => {
+                    then((response) => {
                         setContactsLoading(false);
                         if (contactsPage < 2) {
-                            $(".listOfContacts").html(data.contacts);
+                            $(".listOfContacts").html(response.data.contacts);
                         } else {
-                            $(".listOfContacts").append(data.contacts);
+                            $(".listOfContacts").append(response.data.contacts);
                         }
                         updateSelectedContact();
                         // update data-action required with [responsive design]
                         cssMediaQueries();
-                        if (data.total > 0) {
+                        if (response.data.total > 0) {
                             $('.listOfContacts').css('height', 'auto');
                         }
                         // Pagination lock & messages page
-                        noMoreContacts = contactsPage >= data?.last_page;
+                        noMoreContacts = contactsPage >= response.data?.last_page;
                         if (!noMoreContacts) contactsPage += 1;
                     })
             } catch (err) {
                 setContactsLoading(false);
                 console.error(error);
-            }*/
+            }
 
-            $.ajax({
+            /*$.ajax({
                 url: url + "/getContacts",
                 method: "GET",
                 data: {_token: access_token, page: contactsPage},
                 dataType: "JSON",
                 success: (data) => {
+                    console.log(data);
                     setContactsLoading(false);
                     if (contactsPage < 2) {
                         $(".listOfContacts").html(data.contacts);
@@ -977,7 +977,7 @@ if (!pathName.includes('register') && !pathName.includes('settings') && !pathNam
                     setContactsLoading(false);
                     console.error(error);
                 },
-            });
+            });*/
         }
     }
 
