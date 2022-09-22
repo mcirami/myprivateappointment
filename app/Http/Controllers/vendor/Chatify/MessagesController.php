@@ -10,8 +10,9 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
-use App\Models\ChMessage as Message;
+//use App\Models\ChMessage as Message;
 use App\Models\ChFavorite as Favorite;
+use App\Models\Message;
 use Chatify\Facades\ChatifyMessenger as Chatify;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -317,18 +318,18 @@ class MessagesController extends Controller
      */
     public function getContacts(Request $request)
     {
-
+        $userID = Auth::id();
         $perPage = $request->get('page');
         // get all users that received/sent message from/to [Auth user]
-        $users = Message::join('users',  function ($join) {
+        $users = Message::join('users', function ($join) {
             $join->on('ch_messages.from_id', '=', 'users.id')
                 ->orOn('ch_messages.to_id', '=', 'users.id');
         })
-        ->where(function ($q) {
-            $q->where('ch_messages.from_id', Auth::user()->id)
-            ->orWhere('ch_messages.to_id', Auth::user()->id);
+        ->where(function ($q) use($userID) {
+            $q->where('ch_messages.from_id', $userID)
+            ->orWhere('ch_messages.to_id', $userID);
         })
-        ->where('users.id','!=',Auth::user()->id)
+        ->where('users.id','!=',$userID)
         ->select('users.*',DB::raw('MAX(ch_messages.created_at) max_created_at'))
         ->orderBy('max_created_at', 'desc')
         ->groupBy('users.id')

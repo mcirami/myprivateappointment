@@ -10,6 +10,8 @@ class Message extends Model
 {
     use HasFactory;
 
+    protected $table = 'ch_messages';
+
     protected $fillable = ['message'];
 
     public function user(){
