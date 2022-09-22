@@ -926,9 +926,9 @@ if (!pathName.includes('register') && !pathName.includes('settings') && !pathNam
                 page: contactsPage
             }
 
-            try {
-                axios.get(url + "/getContacts", packets).
-                    then((response) => {
+            /*try {*/
+                axios.get(url + "/getContacts", packets)
+                .then((response) => {
                         setContactsLoading(false);
                         if (contactsPage < 2) {
                             $(".listOfContacts").html(response.data.contacts);
@@ -945,10 +945,13 @@ if (!pathName.includes('register') && !pathName.includes('settings') && !pathNam
                         noMoreContacts = contactsPage >= response.data?.last_page;
                         if (!noMoreContacts) contactsPage += 1;
                     })
-            } catch (err) {
+                .catch(function(error) {
+                    console.log(error.toJSON());
+                });
+            /*} catch (err) {
                 setContactsLoading(false);
                 console.error(error);
-            }
+            }*/
 
             /*$.ajax({
                 url: url + "/getContacts",
