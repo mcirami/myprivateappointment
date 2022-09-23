@@ -1351,6 +1351,8 @@ if (!pathName.includes('register') && !pathName.includes('settings') && !pathNam
                     IDinfo(getMessengerId(), getMessengerType());
                 }
 
+                console.log(addChatUser);
+
                 if (addChatUser) {
                     if ($.trim(addChatUser).length > 0) {
                         $(".messenger-search").trigger("focus");

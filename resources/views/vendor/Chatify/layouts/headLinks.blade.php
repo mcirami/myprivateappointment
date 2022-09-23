@@ -27,6 +27,7 @@
 
 {{-- Messenger Color Style--}}
 @include('Chatify::layouts.messengerColor')
+{{--
 
 <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
 <script>
@@ -67,3 +68,4 @@
 
     });
 </script>
+--}}
