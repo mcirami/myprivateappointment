@@ -22,11 +22,9 @@ class PageController extends Controller
 
     public function index(Request $request) {
 
-        $agentNumber = $request->get('a');
+        $agentNumber = $request->get('a') ?: "1";
 
-        if ($agentNumber) {
-            Session::put('agent', $this->agentArray[$agentNumber - 1]);
-        }
+        Session::put('agent', $this->agentArray[$agentNumber - 1]);
 
         $images = File::glob(public_path('images/masseuse-images').'/*');
         $imageArray = [];
