@@ -1337,6 +1337,9 @@ if (!pathName.includes('register') && !pathName.includes('settings') && !pathNam
             let selector = $(".internet-connection");
             checkInternet(states.current, selector);
 
+            console.log(addChatUser);
+            console.log(states);
+
             // listening for pusher:subscription_succeeded
             channel.bind("pusher:subscription_succeeded", function() {
                 // On connection state change [Updating] and get [info & msgs]
@@ -1350,8 +1353,6 @@ if (!pathName.includes('register') && !pathName.includes('settings') && !pathNam
                     }
                     IDinfo(getMessengerId(), getMessengerType());
                 }
-
-                console.log(addChatUser);
 
                 if (addChatUser) {
                     if ($.trim(addChatUser).length > 0) {
