@@ -10,6 +10,7 @@ import {MessageQueue} from './MessageQueue';
 const queue = new MessageQueue;
 
 const pathName = window.location.pathname;
+const fullPath = window.location.href;
 
 if (!pathName.includes('register') && !pathName.includes('settings') && !pathName.includes('step-two')) {
     let messenger,
@@ -926,32 +927,27 @@ if (!pathName.includes('register') && !pathName.includes('settings') && !pathNam
                 page: contactsPage
             }
 
-            /*try {*/
-                axios.get(url + "/getContacts", packets)
-                .then((response) => {
-                        setContactsLoading(false);
-                        if (contactsPage < 2) {
-                            $(".listOfContacts").html(response.data.contacts);
-                        } else {
-                            $(".listOfContacts").append(response.data.contacts);
-                        }
-                        updateSelectedContact();
-                        // update data-action required with [responsive design]
-                        cssMediaQueries();
-                        if (response.data.total > 0) {
-                            $('.listOfContacts').css('height', 'auto');
-                        }
-                        // Pagination lock & messages page
-                        noMoreContacts = contactsPage >= response.data?.last_page;
-                        if (!noMoreContacts) contactsPage += 1;
-                    })
-                .catch(function(error) {
-                    console.log(error.toJSON());
-                });
-            /*} catch (err) {
-                setContactsLoading(false);
-                console.error(error);
-            }*/
+            axios.get(url + "/getContacts", packets)
+            .then((response) => {
+                    setContactsLoading(false);
+                    if (contactsPage < 2) {
+                        $(".listOfContacts").html(response.data.contacts);
+                    } else {
+                        $(".listOfContacts").append(response.data.contacts);
+                    }
+                    updateSelectedContact();
+                    // update data-action required with [responsive design]
+                    cssMediaQueries();
+                    if (response.data.total > 0) {
+                        $('.listOfContacts').css('height', 'auto');
+                    }
+                    // Pagination lock & messages page
+                    noMoreContacts = contactsPage >= response.data?.last_page;
+                    if (!noMoreContacts) contactsPage += 1;
+                })
+            .catch(function(error) {
+                console.log(error.toJSON());
+            });
 
             /*$.ajax({
                 url: url + "/getContacts",
@@ -1336,9 +1332,6 @@ if (!pathName.includes('register') && !pathName.includes('settings') && !pathNam
         pusher.connection.bind("state_change", function(states) {
             let selector = $(".internet-connection");
             checkInternet(states.current, selector);
-
-            console.log(addChatUser);
-            console.log(states);
 
             // listening for pusher:subscription_succeeded
             channel.bind("pusher:subscription_succeeded", function() {
